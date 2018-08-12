@@ -8462,3 +8462,15 @@ footer .slogon {
   font-weight: bold;
 }
 
+.tasks {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.tasks li {
+  overflow: auto;
+  padding: 10px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+

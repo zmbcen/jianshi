@@ -3,4 +3,7 @@
 
 @section('content')
     <h1>历史</h1>
+
+@include('historys._every_task')
+
 @stop

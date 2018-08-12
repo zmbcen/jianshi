@@ -5,8 +5,8 @@
           <nav>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="{{ route('current_task') }}">当前任务</a></li>
-              <li><a href="{{ route('add_task') }}">添加任务</a></li>
-              <li><a href="{{ route('history') }}">历史</a></li>
+              <li><a href="{{ route('tasks.create') }}">添加任务</a></li>
+              <li><a href="{{ route('tasks.index') }}">历史</a></li>
               <li><a href="{{ route('update_database') }}">行业库更新</a></li>
               <li><a href="{{ route('setting') }}">设置</a></li>
             </ul>
@@ -14,3 +14,4 @@
         </div>
       </div>
     </header>
+

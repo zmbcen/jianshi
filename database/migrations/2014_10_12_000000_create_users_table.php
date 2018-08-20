@@ -17,9 +17,9 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('password',60);  #设置密码长度最大为60
+            $table->rememberToken();       #该字段用于保存记住我，信息
+            $table->timestamps();          #分别保存用户的创建时间和更新时间
         });
     }
 

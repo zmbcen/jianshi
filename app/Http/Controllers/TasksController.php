@@ -36,12 +36,8 @@ class TasksController extends Controller
         ]);
 
         #在创建任务后，自动将该任务设置为当前任务
-        $last_current_task=Task::where('is_present',true)->first();
-        $last_current_task->is_present=false;
-        $last_current_task->save();
-
-        $task->is_present = true;
-        $task->save();
+        $this->set_present_task($task);
+        session()->flash('success',"您已成功创建任务！（默认将该任务设置为当前任务）");
 
         return redirect()->route('tasks.show', [$task]);
     }
@@ -51,10 +47,39 @@ class TasksController extends Controller
         return view('tasks.show',compact('task'));
     }
 
+    public function update(Task $task,Request $request)
+    {
+        #如果含有task_id，则说明是点击的设为当前任务提交的表单
+        if($request->has('task_id'))
+        {
+            $this->set_present_task($task);
+            session()->flash('success',"成功将本任务设置为当前任务");
+            return redirect()->route('tasks.show',$task->id);
+        }
+    }
+
     public function index()
     {
         $tasks = Task::all();
         return view('tasks.index', compact('tasks'));
+    }
+
+    public function get_present_task()
+    {
+        $task = Task::where('is_present',true)->first();
+        // return view('tasks.show',compact('task'));
+        return redirect()->route('tasks.show',$task->id);
+
+    }
+
+    protected function set_present_task($task)
+    {
+        $last_current_task=Task::where('is_present',true)->first();
+        $last_current_task->is_present=false;
+        $last_current_task->save();
+
+        $task->is_present = true;
+        $task->save();
     }
 
 

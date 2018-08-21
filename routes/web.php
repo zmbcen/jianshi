@@ -15,3 +15,4 @@ Route::delete('logout','SessionsController@destroy')->name('logout');
 Route::get('/update_database', 'UpdateDatabaseController@update_database')->name('update_database');
 
 Route::resource('tasks','TasksController');
+Route::get('/present-task','TasksController@get_present_task')->name('tasks.present_task');

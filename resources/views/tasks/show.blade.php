@@ -1,7 +1,15 @@
 @extends('layouts.default')
 @section('title', $task->company_name)
 @section('content')
-    <div class="panel panel-default">
+
+<form method="POST" action="{{ route('tasks.update', $task->id )}}">
+          {{ csrf_field() }}
+          {{ method_field('PATCH') }}
+          <input type='hidden' name='task_id' value="{{ $task -> id }}">
+          <button type="submit" class="btn btn-primary btn-lg">设为当前任务</button>
+</form>
+
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">单位信息</h3>
     </div>
@@ -28,4 +36,6 @@
         <tr><td>联系方式</td><td>{{ $task->phone_number_of_prepaper }} </td></tr>
     </table>
 </div>
+
+
 @stop

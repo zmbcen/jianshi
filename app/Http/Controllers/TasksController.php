@@ -8,10 +8,6 @@ use App\Models\Task;
 
 class TasksController extends Controller
 {
-    public function current_task()
-    {
-        return view('tasks/current_task');
-    }
 
     public function create()
     {
@@ -37,15 +33,22 @@ class TasksController extends Controller
             'title_prepaper' => $request->title_prepaper,
             'education_background_prepaper' => $request->education_background_prepaper,
             'phone_number_of_prepaper' => $request->phone_number_of_prepaper,
-
         ]);
+
+        #在创建任务后，自动将该任务设置为当前任务
+        $last_current_task=Task::where('is_present',true)->first();
+        $last_current_task->is_present=false;
+        $last_current_task->save();
+
+        $task->is_present = true;
+        $task->save();
 
         return redirect()->route('tasks.show', [$task]);
     }
 
     public function show(Task $task)
     {
-        return view('tasks.show_task',compact('task'));
+        return view('tasks.show',compact('task'));
     }
 
     public function index()

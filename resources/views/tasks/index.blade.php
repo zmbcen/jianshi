@@ -1,9 +1,9 @@
 @extends('layouts.default')
-@section('title', '历史任务')
+@section('title', '历史分析')
 
 @section('content')
 <div class="col-md-offset-2 col-md-8">
-  <h1>历史任务</h1>
+  <h1>历史分析</h1>
   <ul class="tasks">
     @foreach ($tasks as $task)
       <li>
